@@ -84,10 +84,39 @@
                     </div>
                 </div>
             </div>
+            <div class="dropdown">
+                <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
+                    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
+                        <img class="h-20px w-20px rounded-sm" src="{{ asset('assets/media/svg/flags/226-united-states.svg') }}" alt="">
+                    </div>
+                </div>
+                <div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right" style="">
+                    <ul class="navi navi-hover py-4">
+                        <li class="navi-item">
+                            <a href="#" class="navi-link">
+                                <span class="symbol symbol-20 mr-3">
+                                    <img src="{{ asset('assets/media/svg/flags/226-united-states.svg') }}" alt="">
+                                </span>
+                                <span class="navi-text">English</span>
+                            </a>
+                        </li>
+                        <li class="navi-item active">
+                            <a href="#" class="navi-link">
+                                <span class="symbol symbol-20 mr-3">
+                                    <img src="{{ asset('assets/media/svg/flags/128-spain.svg') }}" alt="">
+                                </span>
+                                <span class="navi-text">Spanish</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="topbar-item">
                 <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                     <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
-                    <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">Sean</span>
+                    <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">
+                        {{ Auth::user()->name }}
+                    </span>
                     <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
                         <span class="symbol-label font-size-h5 font-weight-bold">S</span>
                     </span>
@@ -96,3 +125,6 @@
         </div>
     </div>
 </div>
+@if (session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
