@@ -1,0 +1,20 @@
+{
+  "name": "agmall_local",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Hoai <hoainxptit@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/HoaiPEC/agmall_local",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AlertifyJS": "https://github.com/MohammadYounes/AlertifyJS.git#^1.13.1"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/HoaiPEC/agmall_local",
+  "authors": [
+    "Hoai <hoainxptit@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-toggle": "https://github.com/minhur/bootstrap-toggle.git#^2.2.2",
+    "AlertifyJS": "https://github.com/MohammadYounes/AlertifyJS.git#^1.13.1"
+  }
+}

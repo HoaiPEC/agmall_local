@@ -1,11 +1,12 @@
-<div id="kt_header" class="header header-fixed">
+    <div id="kt_header" class="header header-fixed">
     <div class="container-fluid d-flex align-items-stretch justify-content-between">
         <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
             <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
                 <ul class="menu-nav">
-                    <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here menu-item-active" data-menu-toggle="click" aria-haspopup="true">
+                    <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open
+                        menu-item-here menu-item-active" data-menu-toggle="click" aria-haspopup="true">
                         <a href="javascript:" class="menu-link menu-toggle">
-                            <span class="menu-text">Pages</span>
+                            <span class="menu-text">{{ trans('admin.pages') }}</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
@@ -22,18 +23,6 @@
                                         <span class="menu-text">Team Manager</span>
                                         <i class="menu-arrow"></i>
                                     </a>
-                                    <div class="menu-submenu menu-submenu-classic menu-submenu-right">
-                                        <ul class="menu-subnav">
-                                            <li class="menu-item" aria-haspopup="true">
-                                                <a href="javascript:" class="menu-link">
-                                                    <i class="menu-bullet menu-bullet-dot">
-                                                        <span></span>
-                                                    </i>
-                                                    <span class="menu-text">Add Team Member</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -57,7 +46,6 @@
                 </div>
                 <div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
                     <div class="quick-search quick-search-dropdown" id="kt_quick_search_dropdown">
-                        <!--begin:Form-->
                         <form method="get" class="quick-search-form">
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -87,13 +75,22 @@
             <div class="dropdown">
                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-                        <img class="h-20px w-20px rounded-sm" src="{{ asset('assets/media/svg/flags/226-united-states.svg') }}" alt="">
+                        @php $locale = session()->get('locale') @endphp
+
+                        @switch ($locale)
+                            @case ('en')
+                                <img class="h-20px w-20px rounded-sm" src="{{ asset('assets/media/svg/flags/226-united-states.svg') }}" alt="">
+                            @break
+                            @case ('vi')
+                                <img class="h-20px w-20px rounded-sm" src="{{ asset('assets/media/svg/flags/vn.png') }}" alt="">
+                            @break
+                        @endswitch
                     </div>
                 </div>
                 <div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right" style="">
                     <ul class="navi navi-hover py-4">
                         <li class="navi-item">
-                            <a href="#" class="navi-link">
+                            <a class="navi-link" href="{{ route('lang', ['locale' => 'en']) }}">
                                 <span class="symbol symbol-20 mr-3">
                                     <img src="{{ asset('assets/media/svg/flags/226-united-states.svg') }}" alt="">
                                 </span>
@@ -101,11 +98,11 @@
                             </a>
                         </li>
                         <li class="navi-item active">
-                            <a href="#" class="navi-link">
+                            <a class="navi-link" href="{{ route('lang', ['locale' => 'vi']) }}">
                                 <span class="symbol symbol-20 mr-3">
-                                    <img src="{{ asset('assets/media/svg/flags/128-spain.svg') }}" alt="">
+                                    <img src="{{ asset('assets/media/svg/flags/vn.png') }}" alt="">
                                 </span>
-                                <span class="navi-text">Spanish</span>
+                                <span class="navi-text">Vietnam</span>
                             </a>
                         </li>
                     </ul>
@@ -115,7 +112,7 @@
                 <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                     <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
                     <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">
-                        {{ Auth::user()->name }}
+                        {{ @Auth::user()->name }}
                     </span>
                     <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
                         <span class="symbol-label font-size-h5 font-weight-bold">S</span>

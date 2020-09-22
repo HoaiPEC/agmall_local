@@ -1,6 +1,27 @@
 <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
-        <h3 class="font-weight-bold m-0"> User Profile </h3>
+        <h3 class="font-weight-bold m-0">
+            @switch (Auth::user()->role)
+                @case (config('roles.admin'))
+                Admin
+                @break;
+                @case (config('roles.sale_director'))
+                Sale Director
+                @break;
+                @case (config('roles.sale_manager'))
+                Sale Manager
+                @break;
+                @case (config('roles.sale'))
+                Sale Sale
+                @break;
+                @case (config('roles.product_manager'))
+                Product Manager
+                @break;
+                @case (config('roles.store_manager'))
+                Store Manager
+                @break;
+            @endswitch
+        </h3>
         <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
             <i class="ki ki-close icon-xs text-muted"></i>
         </a>
@@ -9,13 +30,13 @@
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
                 <div class="symbol-label">
-                    <img src="{{ URL::to(Auth::user()->avatar) }}" class="img-user">
+                    <img src="{{ URL::to(@Auth::user()->avatar) }}" class="img-user">
                 </div>
                 <i class="symbol-badge bg-success"></i>
             </div>
             <div class="d-flex flex-column">
                 <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
-                    {{ Auth::user()->name }}
+                    {{ @Auth::user()->name }}
                 </a>
                 <div class="navi mt-2">
                     <a href="#" class="navi-item">
@@ -30,15 +51,72 @@
                                     </svg>
                                 </span>
                             </span>
-                            <span class="navi-text text-muted text-hover-primary">{{ Auth::user()->email }}</span>
+                            <span class="navi-text text-muted text-hover-primary">{{ @Auth::user()->email }}</span>
                         </span>
                     </a>
-                    <form action="{{ route('admin.logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">
-                            Sign Out
-                        </button>
-                    </form>
+                    <div class="card-toolbar">
+                        <div class="dropdown dropdown-inline mr-2">
+                            <button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ trans('admin.action') }}
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="">
+                                <ul class="navi flex-column navi-hover py-2">
+                                    <li class="navi-item">
+                                        <form action="{{ route('admin.logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5">
+                                                <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                                    <svg>
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <polygon points="0 0 24 0 24 24 0 24"/>
+                                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/>
+                                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                                {{ trans('admin.logout') }}
+                                            </button>
+                                        </form>
+                                    </li>
+                                    @if (isset($users))
+                                        @foreach ($users as $user)
+                                            @php $role = $user->role; @endphp
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon">
+                                                        <i class="la la-copy"></i>
+                                                    </span>
+                                                    <span class="navi-text">
+                                                        @switch ($role)
+                                                            @case (config('roles.admin'))
+                                                                Admin
+                                                                @break;
+                                                            @case (config('roles.sale_director'))
+                                                                Sale Director
+                                                                @break;
+                                                            @case (config('roles.sale_manager'))
+                                                                Sale Manager
+                                                                @break;
+                                                            @case (config('roles.sale'))
+                                                                Sale Sale
+                                                                @break;
+                                                            @case (config('roles.product_manager'))
+                                                                Product Manager
+                                                                @break;
+                                                            @case (config('roles.store_manager'))
+                                                                Store Manager
+                                                                @break;
+                                                        @endswitch
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,7 +137,7 @@
                         </div>
                     </div>
                     <div class="navi-text">
-                        <div class="font-weight-bold">My Profile</div>
+                        <div class="font-weight-bold">{{ trans('admin.my_profile') }}</div>
                     </div>
                 </div>
             </a>

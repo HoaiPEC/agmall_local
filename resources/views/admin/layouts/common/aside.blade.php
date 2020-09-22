@@ -29,7 +29,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="menu-text">Dashboard</span>
+                        <span class="menu-text">{{ trans('admin.dashboard') }}</span>
                     </a>
                 </li>
                 <li class="menu-section">
@@ -45,7 +45,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="menu-text">Applications</span>
+                        <span class="menu-text">{{ trans('admin.manage') }}</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -53,30 +53,32 @@
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link">
-                                    <span class="menu-text">Applications</span>
+                                    <span class="menu-text">{{ trans('admin.manage') }}</span>
                                 </span>
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="javascript:" class="menu-link menu-toggle">
+                                <a href="{{ route('admin.sale-directors.index') }}" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">eCommerce</span>
-                                    <i class="menu-arrow"></i>
+                                    <span class="menu-text">{{ trans('admin.sale_director') }}</span>
                                 </a>
-                                <div class="menu-submenu">
-                                    <i class="menu-arrow"></i>
-                                    <ul class="menu-subnav">
-                                        <li class="menu-item" aria-haspopup="true">
-                                            <a href="#" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="menu-text">Dashboard 1</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            </li>
+                            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="{{ route('admin.sale-directors.index') }}" class="menu-link menu-toggle">
+                                    <i class="menu-bullet menu-bullet-line">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">{{ trans('admin.product_manager') }}</span>
+                                </a>
+                            </li>
+                            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="{{ route('admin.sale-directors.index') }}" class="menu-link menu-toggle">
+                                    <i class="menu-bullet menu-bullet-line">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">{{ trans('admin.store_manager') }}</span>
+                                </a>
                             </li>
                         </ul>
                     </div>

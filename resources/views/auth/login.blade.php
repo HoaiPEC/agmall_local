@@ -41,15 +41,24 @@
                     @if (session('error'))
                         <div class="alert alert-danger">{{ session('error') }}</div>
                     @endif
-                    <form class="form" method="POST" action="{{ route('admin.login') }}" novalidate="novalidate" id="kt_login_signin_form">
+
+                    @include('admin.layouts.common.error')
+                    <form class="form" method="POST" action="{{ route('admin.post_login') }}" novalidate="novalidate" id="kt_login_signin_form">
                         @csrf
                         <div class="form-group">
                             <input class="form-control form-control-solid h-auto py-5 px-6" type="text"
-                                placeholder="Email" name="email" autocomplete="off" />
+                                placeholder="{{ trans('admin.phone') }}" name="phone" autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <input class="form-control form-control-solid h-auto py-5 px-6" type="password"
                                 placeholder="Password" name="password" autocomplete="off" />
+                        </div>
+                        <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-3">
+                            <div class="checkbox-inline">
+                                <label class="checkbox checkbox-outline m-0 text-muted">
+                                    <input type="checkbox" name="remember">
+                                    <span></span>Remember me</label>
+                            </div>
                         </div>
                         <div class="form-group d-flex flex-wrap justify-content-between align-items-center">
                             <a href="javascript:;" class="text-dark-50 text-hover-primary my-3 mr-2" id="kt_login_forgot">

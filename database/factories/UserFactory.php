@@ -9,11 +9,11 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'phone' => $faker->unique()->phoneNumber,
+        'phone' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'avatar' => 'images/icon-avatar-default.png',
         'password' => bcrypt('123456789'),
-        'role' => $faker->randomDigitNot(9),
+        'role' => $faker->numberBetween(1,6),
         'blocked' => $faker->randomElement([0,1]),
         'deleted' => $faker->randomElement([0,1]),
         'registry' => $faker->randomElement([1,2]),

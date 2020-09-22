@@ -14,4 +14,5 @@
 <link href="{{ asset('assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
 <link href="{{ asset('assets/css/pages/login/classic/login-1.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ mix('css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
